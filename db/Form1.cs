@@ -124,7 +124,7 @@ namespace db
 
             else if (name.Text != "" && surname.Text != "" && email.Text != "" && vanemCheck == true)
             {
-                command = new SqlCommand("INSERT INTO vanemad(Nimi,Perekonnanimi,Email,OpilaneId) VALUES (@name,@sur,@mail,@opilan)", connect);
+                command = new SqlCommand("INSERT INTO vanemad(Nimi,Perekonnanimi,Email,Opilane) VALUES (@name,@sur,@mail,@opilan)", connect);
                 connect.Open();
                 command.Parameters.AddWithValue("@name", name.Text);
                 command.Parameters.AddWithValue("@sur", surname.Text);
@@ -280,45 +280,47 @@ namespace db
                 DisplayData();
             }
 
+            //DateTime today = DateTime.Today;
+            //int age = today.Year - dob.Year;
 
-            /*if (checkBox1.Checked == true && name.Text != "")
-            {
-
-
-                if (age >= 18)
-                {
-                    MessageBox.Show("Õpilasel on juba 18 aastat!");
-                    checkBox1.Checked = false;
-                }
-                else
-                {
-                    vanemCheck = true;
-                    address.Enabled = false;
-                    number.Enabled = false;
-                    comboBox1.Enabled = false;
-                    syniaeg.Enabled = false;
-
-                    dataGridView2.BringToFront();
-                    DisplayParent();
-                    comboBox1.Items.Clear();
-                    vanMail = true;
-                }
+            //if (checkBox1.Checked == true && name.Text != "")
+            //{
 
 
-            }
-            else
-            {
-                address.Enabled = true;
-                number.Enabled = true;
-                comboBox1.Enabled = true;
-                syniaeg.Enabled = true;
-                vanemCheck = false;
-                dataGridView2.SendToBack();
-                checkBox1.Checked = false;
-                vanMail = false;
-                ClearData();
-                DisplayData();
-            }*/
+            //    if (age >= 18)
+            //    {
+            //        MessageBox.Show("Õpilasel on juba 18 aastat!");
+            //        checkBox1.Checked = false;
+            //    }
+            //    else
+            //    {
+            //        vanemCheck = true;
+            //        address.Enabled = false;
+            //        number.Enabled = false;
+            //        comboBox1.Enabled = false;
+            //        syniaeg.Enabled = false;
+
+            //        dataGridView2.BringToFront();
+            //        DisplayParent();
+            //        comboBox1.Items.Clear();
+            //        vanMail = true;
+            //    }
+
+
+            //}
+            //else
+            //{
+            //    address.Enabled = true;
+            //    number.Enabled = true;
+            //    comboBox1.Enabled = true;
+            //    syniaeg.Enabled = true;
+            //    vanemCheck = false;
+            //    dataGridView2.SendToBack();
+            //    checkBox1.Checked = false;
+            //    vanMail = false;
+            //    ClearData();
+            //    DisplayData();
+            //}
         }
 
         private void dataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -350,7 +352,7 @@ namespace db
             connect.Open();
             DataTable table = new DataTable();
             adapter2 = new SqlDataAdapter("SELECT * FROM vanemad", connect);
-            command = new SqlCommand("SELECT * FROM vanemad WHERE OpilaneId = @opId", connect);
+            command = new SqlCommand("SELECT * FROM vanemad WHERE Opilane = @opId", connect);
             command.Parameters.Add("@opId", SqlDbType.Int).Value = Id;
             adapter2.SelectCommand = command;
             adapter2.Fill(table);

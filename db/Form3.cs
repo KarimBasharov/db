@@ -32,7 +32,7 @@ namespace db
         private void button1_Click(object sender, EventArgs e)
         {
             MailAddress to = new MailAddress(mail);
-            MailAddress from = new MailAddress("---");
+            MailAddress from = new MailAddress("prorokadolbobeka@gmail.com");
             MailMessage message = new MailMessage(from, to);
 
             message.Subject = textBox1.Text;
@@ -41,7 +41,7 @@ namespace db
             SmtpClient client = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("---", "---"),
+                Credentials = new NetworkCredential("prorokadolbobeka@gmail.com", ""),
                 EnableSsl = true
             };
             client.Send(message);
